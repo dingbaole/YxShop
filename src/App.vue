@@ -2,12 +2,29 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view/>
+    <button @click="add()">111</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data (){
+    return {
+
+    }
+  },
+  mounted(){
+
+  },
+  created(){
+    
+  },
+  methods:{
+    add(){
+      this.$store.commit('add')
+    }
+  }
 }
 </script>
 
