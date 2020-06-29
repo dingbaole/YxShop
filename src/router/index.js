@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
-import shop from './shop'
+import zhuche from './zhuche'
 
 export default new Router({
   routes: [
@@ -13,6 +13,6 @@ export default new Router({
       name: 'HelloWorld',
       component: HelloWorld
     },
-    ...shop
+    ...zhuche
   ]
 })
