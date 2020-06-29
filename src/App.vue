@@ -2,11 +2,11 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view/>
-    <button @click="add()">111</button>
   </div>
 </template>
 
 <script>
+import storage from '@/utils/storage'
 export default {
   name: 'App',
   data (){
@@ -15,7 +15,6 @@ export default {
     }
   },
   mounted(){
-
   },
   created(){
     
