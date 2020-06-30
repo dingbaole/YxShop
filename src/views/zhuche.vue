@@ -31,19 +31,20 @@
             <van-button size="small" type="primary" @click="sendCode" :disabled="disa">{{ miao }}</van-button>
           </template>
         </van-field>
-        <van-field placeholder="地区" class="inp" v-model="city" right-icon="map-marked" @click="show = true"/>
+        <van-field placeholder="地区" class="inp" v-model="chengshi" right-icon="map-marked" @click="show = true"/>
         <!-- 地区滑出 -->
         <van-popup v-model="show" position="bottom" :style="{ height: '30%' }">
             <van-area title="标题" :area-list="areaList" @confirm="queren" @cancel="show = false" />
         </van-popup>
         <van-button type="info" @click="zhuche" block>注册</van-button>
+        <p class="denglu"><router-link to="/denglu">已有账号？登录</router-link></p>
     </div>
   </div>
 </template>
 
 <script>
 import "@/assets/reset.css"
-import AreaList from "@/utils/area";
+import AreaList from "@/utils/area"; //导入城市数据
 export default {
   data() {
     return {
@@ -54,7 +55,7 @@ export default {
         user:"",//用户名
         img_key:"",//图形验证码
         mobile_key:"",//手机验证码
-        city:"",//城市
+        chengshi:"",//城市
 
       //图片信息
       img_src:"",//请求图片路径
@@ -69,8 +70,10 @@ export default {
       disa:false,       //控制按钮锁定  
 
       //城市
-      show:false,
-      areaList:AreaList,
+      show:false,//控制滑框显示隐藏
+      areaList:AreaList,//城市数据
+      province:"",//省
+      city:"",//市
     };
   },
   created() {},
@@ -78,13 +81,15 @@ export default {
     this.img_src = "https://api.it120.cc/small4/verification/pic/get?key='111'"
   },
   methods: {
+
     //刷新图形验证码
     shuaxin(){
       //随机生成图片key值 
       this.src_key =  (new Date()).getTime()
       this.img_src = `https://api.it120.cc/small4/verification/pic/get?key=${this.src_key}`
     },
-    //注册
+
+    //注册校验--先对表单进行校验，符合条件在触发提交注册函数
     zhuche(){
       if(this.mobile == '' || this.pwd == '' || this.user == '' || this.img_key == '' || this.mobile_key == ''){
         this.$toast.fail('手机,密码,验证码,用户不能为空');
@@ -102,8 +107,9 @@ export default {
         return false;
       }
       //校验成功
-      this.$toast.success("恭喜你,注册成功");
+      this.tijiao()
     },
+
     //发送验证码倒计时
     fashong(){
       let sum = 10
@@ -119,16 +125,8 @@ export default {
         this.miao = `${sum}s后再试`
       },1000)
     },
-    //城市滑框
-    //点击确认
-    queren(arr){
-      console.log(arr)
-      let Arr = arr.map((arr)=>{
-        return arr.name
-      })
-      this.show = false
-      this.city = Arr.join('-')
-    },
+
+    
     //发送验证端口
     sendCode(){
       this.$axios({
@@ -141,12 +139,48 @@ export default {
       }).then(res=>{
           console.log(res);
           //校验失败的时候
-          if(res.data.code !=0){
-            this.$toast.fail(res.data.msg);
+          if(res.code !=0){
+            this.$toast.fail(res.msg);
             return false;
           }
           this.fashong();//调用倒计时的方法
         })
+    },
+
+    //城市滑框
+    //点击确认
+    queren(arr){
+      console.log(arr)
+      let Arr = arr.map((arr)=>{
+        return arr.name
+      })
+      this.show = false
+      this.province = arr[0].name //省
+      this.city = arr[1].name     //市
+      this.chengshi = Arr.join('-')
+    },
+
+    //提交注册信息
+    tijiao(){
+      this.$axios({
+        url:"https://api.it120.cc/small4/user/m/register",
+        params:{
+          mobile: this.mobile,
+          pwd: this.pwd,
+          code: this.mobile_key,
+          nick: this.user,
+          province: this.province,
+          city: this.city
+        }
+      }).then(res=>{
+        console.log(res)
+        if(res.code != 0){
+          this.$toast.fail(res.msg);
+          return false
+        }
+        this.$toast.success("恭喜你,注册成功");
+        this.$router.push("/");
+      })
     }
   },
 };
@@ -166,6 +200,9 @@ export default {
     }
     img{
       width: 3rem;
+    }
+    .denglu{
+        margin-top: 0.2rem;
     }
 }
 

@@ -1,4 +1,5 @@
 var storage = {
+    // 设置本地存储
     set:function(key,value,isJon = false){
         // 判断是否为空
         if(key.length == 0 || value.length == 0 ){
@@ -9,6 +10,7 @@ var storage = {
         // 设置本地存储
         localStorage.setItem(key,data)
     },
+    // 获取本地存储
     get:function(key,isJon = false){
         // 判断是否为空
         if(key.length == 0){
@@ -19,6 +21,7 @@ var storage = {
         // 判断获取到的本地存储是否需要吧字符串格式转换成json格式,最后吧获取到的值return返回
         return isJon == true ? JSON.parse(data):data
     },
+    // 删除本地存储
     remove:function(key){
         // 判断是否为空
         if(key.length==0){

@@ -13,6 +13,15 @@ import 'vant/lib/index.css'
 Vue.use(vant)
 //挂载封装的拦截器
 Vue.prototype.$axios = axios
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  if(to.hasOwnProperty('meta')){
+    console.log(to.meta)
+    document.title = to.meta.title
+  }
+  next()
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
