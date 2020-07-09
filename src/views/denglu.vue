@@ -56,6 +56,7 @@ export default {
       }
 
       this.doLogin();//调用执行登陆的方法
+
     },
     //请求登录接口
     doLogin(){
@@ -79,6 +80,7 @@ export default {
             storage.set('09A_user',user,true)
 
             this.$toast.success("用户登陆成功");
+            // this.$router.push('/')
         })
     }
   }
