@@ -80,7 +80,7 @@ export default {
             storage.set('09A_user',user,true)
 
             this.$toast.success("用户登陆成功");
-            // this.$router.push('/')
+            this.$router.push('/home')
         })
     }
   }
