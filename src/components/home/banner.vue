@@ -45,6 +45,9 @@ export default {
 .banner-box {
   width: 100%;
   position: relative;
+  img{
+    width: 100%;
+  }
   nav {
     width: 100%;
     position: absolute;

@@ -1,13 +1,18 @@
 <template>
   <div id="app">
     <router-view/>
+    <longding v-show="this.$store.state.longding"/>
   </div>
 </template>
 
 <script>
 import storage from '@/utils/storage'
+import longding from '@/components/gongyong/longding'
 export default {
   name: 'App',
+  components:{
+    longding
+  },
   data (){
     return {
 

@@ -10,6 +10,8 @@ import home from './home'     //首页--不包括底部选项卡
 import index from '@/views/home/index' //首页
 import kan from '@/views/home/kan'
 
+import xiangqing from '@/views/fenlei/xiangqing' //分类页面的详情页面
+
 export default new Router({
   routes: [
     {
@@ -36,6 +38,14 @@ export default new Router({
       component: kan,
       meta:{
         title:"砍价列表"
+      }
+    },
+    {
+      path:'/fenlei/xiangqing',
+      name:'xiangqing',
+      component:xiangqing,
+      meta:{
+        title:"商品详情"
       }
     },
     ...zhuche,

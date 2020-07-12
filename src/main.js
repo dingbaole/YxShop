@@ -17,7 +17,6 @@ Vue.prototype.$axios = axios
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
   if(to.hasOwnProperty('meta')){
-    console.log(to.meta)
     document.title = to.meta.title
   }
   next()

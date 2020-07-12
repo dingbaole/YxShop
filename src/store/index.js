@@ -5,15 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        str:"你好"
+        longding:false,
     },
     mutations: {
-        add(state){
-            console.log(state.str)
+        getlongding(state,bool){
+            state.longding = bool
         }
     },
     actions: {
-        
+
     },
     getters: {
         
