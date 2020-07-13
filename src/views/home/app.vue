@@ -1,7 +1,7 @@
 <template>
   <div class>
-    <van-search placeholder="请输入搜索关键词" @input="shou()" v-model="value" />
-    <van-tree-select height="100vh" :items="fenlei" :main-active-index.sync="index" v-if="show">
+    <van-search placeholder="请输入搜索关键词" class="search" @focus="search"/>
+    <van-tree-select height="100vh" :items="fenlei" :main-active-index.sync="index">
       <template #content>
         <div class="box">
           <div class="list" v-for="(item,index) in list" :key="index" @click="xq(item)">
@@ -11,7 +11,7 @@
         </div>
       </template>
     </van-tree-select>
-    <shangpin :rqList="rqList" class="top" v-else />
+    
   </div>
 </template>
 
@@ -25,10 +25,6 @@ export default {
       index: 0,
       listId: [0],
       allList: [],
-      value: "",
-      rqList: [],
-      allrqList:[],
-      show: true
     };
   },
   components: { shangpin },
@@ -70,22 +66,6 @@ export default {
         }
       });
     },
-    shou() {
-      var arr = []
-      if (this.value == "") {
-        this.show = true;
-      } else {
-        this.show = false;
-        this.allrqList.forEach(item => {
-          console.log(item.name.search(this.value))
-          if (item.name.search(this.value) != -1) {
-            console.log(item);
-            arr.push(item);
-          }
-        });
-      }
-      this.rqList = arr
-    },
     getrq() {
       this.$axios({
         url: "https://api.it120.cc/small4/shop/goods/list"
@@ -96,6 +76,9 @@ export default {
         this.allrqList = arr;
         console.log(arr)
       });
+    },
+    search(){
+      this.$router.push('/fenlei/search')
     }
   }
 };
@@ -118,6 +101,9 @@ export default {
       text-align: center;
       line-height: 0.5rem;
     }
+  }
+  .search{
+    position: fixed;
   }
 }
 </style>

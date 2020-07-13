@@ -11,6 +11,7 @@ import index from '@/views/home/index' //首页
 import kan from '@/views/home/kan'
 
 import xiangqing from '@/views/fenlei/xiangqing' //分类页面的详情页面
+import search from '@/views/fenlei/search'
 
 export default new Router({
   routes: [
@@ -44,6 +45,14 @@ export default new Router({
       path:'/fenlei/xiangqing',
       name:'xiangqing',
       component:xiangqing,
+      meta:{
+        title:"商品详情"
+      }
+    },
+    {
+      path:'/fenlei/search',
+      name:'search',
+      component:search,
       meta:{
         title:"商品详情"
       }
