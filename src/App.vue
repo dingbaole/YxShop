@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <longding v-show="this.$store.state.longding"/>
+    <longding v-show="this.$store.state.longding" class="longding"/>
   </div>
 </template>
 
@@ -38,4 +38,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 } */
+.longding{
+  z-index: 10;
+}
 </style>

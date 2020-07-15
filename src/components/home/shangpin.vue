@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="rq-list">
-      <li v-for="(item,index) in rqList" :key="index">
+      <li v-for="(item,index) in rqList" :key="index" @click="push(item)">
         <img :src="item.pic" alt />
         <p>{{item.name}}</p>
         <p>{{item.characteristic}}</p>
@@ -18,7 +18,17 @@ export default {
   data() {
     return {};
   },
-  components: {}
+  components: {},
+  methods: {
+    push(item){
+      this.$router.push({
+        path:"/sp/sp_xq",
+        query:{
+          id:item.id
+        }
+      })
+    }
+  },
 };
 </script>
 

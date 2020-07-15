@@ -20,7 +20,7 @@
             <van-icon name="gem" size="50" color="red" />
             <p>砍价</p>
           </router-link>
-          <li>
+          <li @click="push">
             <van-icon name="fire" size="50" color="red" />
             <p>专栏</p>
           </li>
@@ -37,7 +37,12 @@ export default {
     return {};
   },
   components: {},
-  props: ["bannerList"]
+  props: ["bannerList"],
+  methods: {
+    push(){
+      this.$router.push('/zhuanlan')
+    }
+  },
 };
 </script>
 

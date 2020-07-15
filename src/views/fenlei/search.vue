@@ -49,6 +49,8 @@ export default {
             this.searchList.pop()
         }
         storage.set('search',this.searchList,true)
+        this.value = ""
+        this.show = true
     },
     get(){
         let data = storage.get('search',true)
@@ -63,8 +65,8 @@ export default {
     list() {
         console.log(this.value);
       if (this.value == "") {
-        this.show = true;
-        return [];
+        this.show = true
+        return []
       }
         this.show = false;
       return this.allList.filter(item => {

@@ -11,7 +11,6 @@
         </div>
       </template>
     </van-tree-select>
-    
   </div>
 </template>
 
