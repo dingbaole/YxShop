@@ -3,7 +3,7 @@
     <banner :bannerList="bannerList" />
     <div class="kan">
       <p class="kan-title">全民砍价</p>
-      <kan :kanList="kanList" />
+      <kan :kanList="kanList" :kanResult="kanResult" />
     </div>
     <div class="jx">
       <p class="jx-title">精选专栏</p>
@@ -37,6 +37,7 @@ export default {
       kanList: [],
       jxList: [],
       rqList: [],
+      kanResult:[]
     };
   },
   mounted() {
@@ -67,6 +68,7 @@ export default {
           list.push(res.data.goodsMap[index]);
         });
         this.kanList = list;
+        this.kanResult = res.data.result
       });
     },
     getjx() {

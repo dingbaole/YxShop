@@ -1,21 +1,11 @@
-<template>
+  <template>
   <div>
     <van-nav-bar title="商品详情" left-text="返回" left-arrow @click-left="onClickLeft" />
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(item,index) in banner" :key="index" class="item">
-        <img :src="item.pic" alt />
-      </van-swipe-item>
-    </van-swipe>
-    <div class="box">
-      <van-tabs v-model="active" class="xq">
-        <van-tab title="商品介绍" class="xq_item">
-          <p v-html="content"></p>
-        </van-tab>
-        <van-tab title="商品评价"></van-tab>
-      </van-tabs>
-    </div>
+    
+    <spxq :banner="banner" :content="content"/>
     <!-- 商品规格弹框 -->
     <van-sku v-model="show" :sku="sku" :goods="goods" @add-cart="push" @stepper-change="shuliang" @sku-selected="leimu" />
+
     <!-- 底部点击加入购物车 -->
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" text="客服" color="#07c160" />
@@ -28,6 +18,7 @@
 </template>
 
 <script>
+import spxq from '@/components/sp_xq';
 export default {
   name: "",
   data() {
@@ -62,7 +53,7 @@ export default {
       property:''
     };
   },
-  components: {},
+  components: {spxq},
   mounted() {
     this.id = this.$route.query.id;
     this.getdata();
@@ -86,7 +77,7 @@ export default {
         this.getlist(res);
       });
     },
-    //获取当前数据
+    //接取拼接sku当前数据
     getlist(data) {
       console.log(data);
       let tree = [];
@@ -168,26 +159,7 @@ export default {
 </script>
 
 <style  lang="scss">
-.my-swipe {
-  width: 100%;
-  .item {
-    width: 100%;
-    img {
-      width: 100%;
-      height: 6rem;
-    }
-  }
-}
-.xq {
-  width: 100%;
-  .xq_item {
-    width: 100% !important;
-    img {
-      width: 100% !important;
-      height: 50% !important;
-    }
-  }
-}
+
 .box {
   width: 100% !important;
 }

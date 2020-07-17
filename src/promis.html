@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = new Object()
+        let str = 'hello js'
+        Object.defineProperty(obj,"name",{
+            get(){
+                console.log("我是get方法")
+                return str
+            },
+            set(newValue){
+                console.log("我是set方法")
+                str = newValue
+            }
+        })
+
+        console.log(obj.name)
+        console.log(obj.name = "holl vue")
+    </script>
+</body>
+</html>

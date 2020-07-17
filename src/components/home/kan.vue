@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(item,index) in kanList" :key="index" class="kan-list">
+      <li v-for="(item,index) in kanList" :key="index" class="kan-list" @click="push(item.id)">
         <div class="kan-left">
           <img :src="item.pic" alt />
         </div>
@@ -31,11 +31,33 @@
 <script>
 export default {
   name: "",
-  props:['kanList'],
+  props:['kanList','kanResult'],
   data() {
-    return {};
+    return {
+      kanid:''
+    };
   },
-  components: {}
+  components: {},
+  mounted() {
+
+  },
+  methods: {
+    push(aid){
+      this.kanResult.forEach(item => {
+        if(item.goodsId == aid){
+          this.kanid = item.id
+        }
+      });
+      console.log(aid,this.kanid)
+      this.$router.push({
+        path:"/kan_sp",
+        query:{
+          id:aid,
+          kjid:this.kanid
+        }
+      })
+    }
+  },
 };
 </script>
 

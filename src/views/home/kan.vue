@@ -11,7 +11,7 @@
     <div class="top">
 
     </div>
-    <kan :kanList="kanList" />
+    <kan :kanList="kanList" :kanResult="kanResult" />
   </div>
 </template>
 
@@ -24,11 +24,13 @@ export default {
   },
   data() {
     return {
-      kanList: []
+      kanList: [],
+      kanResult:[]
     };
   },
   mounted() {
     this.getkan();
+    console.log(this.kanList)
   },
   methods: {
     getkan() {
@@ -36,6 +38,8 @@ export default {
         url: "https://api.it120.cc/small4/shop/goods/kanjia/list"
       }).then(res => {
         this.kanList = res.data.goodsMap;
+        console.log(res)
+        this.kanResult = res.data.result
       });
     },
     onClickLeft(){
