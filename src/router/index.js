@@ -22,8 +22,10 @@ import qr_fk from '@/views/sp/qr_fk'//确认付款
 
 import img_ljz from '@/views/lanjiazai'//图片懒加载页面
 
-import kan_sp from '@/views/kan/kan_sp'
-import kj_xq from '@/views/kan/kj_xq'
+import kan_sp from '@/views/kan/kan_sp'//砍价商品
+import kj_xq from '@/views/kan/kj_xq'  //砍价详情
+
+import meOrder  from '@/views/me/meOrder' ;//我的订单
 
 
 export default new Router({
@@ -132,6 +134,14 @@ export default new Router({
       component:img_ljz,
       meta:{
         title:"图片懒加载"
+      }
+    },
+    {
+      path:'/meOrder',
+      name:'meOrder',
+      component:meOrder,
+      meta:{
+        title:"我的订单"
       }
     },
     ...zhuche,

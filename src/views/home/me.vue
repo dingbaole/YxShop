@@ -11,7 +11,7 @@
     </div>
     <van-notice-bar left-icon="volume-o" text="新上线更稳定的付费快递查询接口" scrollable />
     <div class="me_dd">
-      <van-nav-bar title="我的订单">
+      <van-nav-bar title="我的订单"  @click-right="onClickRight">
         <template #left>
           <van-icon name="bill-o" />
         </template>
@@ -77,7 +77,12 @@ export default {
   data() {
     return {};
   },
-  components: {}
+  components: {},
+  methods: {
+    onClickRight(){
+      this.$router.push('/meOrder')
+    }
+  },
 };
 </script>
 
